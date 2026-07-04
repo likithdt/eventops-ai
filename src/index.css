@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "Space Grotesk", sans-serif;
+
+  /* Custom bento theme colors mapped to custom variables for easy utility usage if needed */
+  --color-bento-bg: #09090b;
+  --color-bento-card: #18181b;
+  --color-bento-border: #27272a;
+  --color-bento-accent: #3b82f6;
+  --color-bento-text: #fafafa;
+  --color-bento-muted: #a1a1aa;
+}
+
+@layer base {
+  :root {
+    --bg: #09090b;
+    --card: #18181b;
+    --border: #27272a;
+    --accent: #3b82f6;
+    --text: #fafafa;
+    --text-dim: #a1a1aa;
+    --success: #22c55e;
+    --warning: #eab308;
+    --danger: #ef4444;
+  }
+
+  body {
+    background-color: var(--bg) !important;
+    color: var(--text) !important;
+    font-family: var(--font-sans);
+  }
+
+  /* Make sure headings use the Display font */
+  h1, h2, h3, h4, h5, h6, .font-display-custom {
+    font-family: var(--font-display), var(--font-sans) !important;
+  }
+
+  /* Custom clean dark scrollbar to match the premium aesthetic */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-dim);
+  }
+}
+
+/* ==========================================
+   BENTO GRID SYSTEM GLOBAL OVERRIDES
+   ========================================== */
+
+/* 1. Global Page Background Override */
+.min-h-screen, .bg-slate-50, .bg-slate-100/50 {
+  background-color: var(--bg) !important;
+}
+
+/* 2. Bento Card Overrides - Apply the Zinc-900 look to every standard white card */
+.bg-white, [id^="visitor-form-card"], [id^="registered-visitors-column"], [id^="ops-dispatch-console"], [id^="active-schedule-panel"], [id^="active-vendors-panel"], [id^="marketing-header-panel"], [id^="outreach-dashboard-card"], [id^="capacity-monitor-card"], [id^="pre-event-checklists-card"], [id^="setup-workspace-inputs"] {
+  background-color: var(--card) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Smooth hover spotlight effect on Bento cards */
+.bg-white:hover, [id^="visitor-form-card"]:hover, [id^="registered-visitors-column"]:hover, [id^="ops-dispatch-console"]:hover, [id^="active-schedule-panel"]:hover, [id^="active-vendors-panel"]:hover, [id^="marketing-header-panel"]:hover, [id^="outreach-dashboard-card"]:hover, [id^="capacity-monitor-card"]:hover, [id^="pre-event-checklists-card"]:hover, [id^="setup-workspace-inputs"]:hover {
+  border-color: rgba(59, 130, 246, 0.4) !important;
+  box-shadow: 0 10px 40px -15px rgba(59, 130, 246, 0.15), 0 4px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* 3. Global Border Color Normalization */
+.border, .border-slate-100, .border-slate-200, .border-slate-300, .border-slate-50, .border-indigo-100\/50, .border-indigo-100, .border-sky-100, .border-blue-100, .border-amber-100 {
+  border-color: var(--border) !important;
+}
+
+/* 4. Global Text Accent & Weight Adjustments */
+.text-slate-950, .text-slate-900, .text-slate-800, .text-slate-700 {
+  color: var(--text) !important;
+}
+.text-slate-600, .text-slate-500, .text-slate-400 {
+  color: var(--text-dim) !important;
+}
+
+/* Specific highlight color mapping for Lucide icons and small labels */
+.text-indigo-600, .text-indigo-700, .text-indigo-500 {
+  color: var(--accent) !important;
+}
+
+/* 5. Blue Accent Buttons and Elements to override Indigo */
+.bg-indigo-600, [id^="btn-register-submit"], [id^="btn-ops-submit"], [id^="btn-generate-report"], [id^="btn-generate-marketing"], [id^="btn-optimize-event"], [id^="btn-campaign-dispatch-"] {
+  background-color: var(--accent) !important;
+  color: var(--text) !important;
+  font-family: var(--font-display), var(--font-sans) !important;
+  border-radius: 12px !important;
+  transition: all 0.2s ease !important;
+}
+.bg-indigo-600:hover, [id^="btn-register-submit"]:hover, [id^="btn-ops-submit"]:hover, [id^="btn-generate-report"]:hover, [id^="btn-generate-marketing"]:hover, [id^="btn-optimize-event"]:hover:not(:disabled), [id^="btn-campaign-dispatch-"]:hover {
+  background-color: #2563eb !important;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.4) !important;
+}
+
+/* Disable states */
+.disabled\:bg-indigo-400:disabled, .disabled\:bg-indigo-300:disabled, .disabled\:bg-indigo-800:disabled {
+  background-color: #1e293b !important;
+  color: #64748b !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+}
+
+/* 6. Tabs Navigation Bento Alignment */
+.bg-slate-100 {
+  background-color: #18181b !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px !important;
+}
+.bg-slate-100 button {
+  border-radius: 8px !important;
+  transition: all 0.2s ease !important;
+}
+.bg-slate-100 button.bg-white {
+  background-color: #27272a !important;
+  color: var(--text) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
+  border: 1px solid #3f3f46 !important;
+}
+
+/* Header customization */
+#app-global-header {
+  background-color: rgba(9, 9, 11, 0.8) !important;
+  backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+/* 7. Input and Textarea Bento styling */
+input, textarea, select {
+  background-color: #09090b !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text) !important;
+  border-radius: 12px !important;
+  padding: 10px 14px !important;
+  transition: all 0.2s ease !important;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--accent) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
+}
+
+/* 8. Sub-elements / Tags and Lists */
+.bg-slate-50, .bg-slate-50\/50, .bg-indigo-50\/40, .bg-indigo-50 {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+}
+.bg-indigo-50 {
+  background-color: rgba(59, 130, 246, 0.1) !important;
+  color: var(--accent) !important;
+  border: 1px solid rgba(59, 130, 246, 0.2) !important;
+}
+.text-indigo-700 {
+  color: #60a5fa !important;
+}
+.text-indigo-950 {
+  color: #ffffff !important;
+}
+
+/* Status Badges */
+.bg-red-50 {
+  background-color: rgba(239, 68, 68, 0.1) !important;
+  color: #fca5a5 !important;
+  border: 1px solid rgba(239, 68, 68, 0.2) !important;
+}
+.bg-emerald-50 {
+  background-color: rgba(34, 197, 94, 0.1) !important;
+  color: #86efac !important;
+  border: 1px solid rgba(34, 197, 94, 0.2) !important;
+}
+.bg-amber-50 {
+  background-color: rgba(234, 179, 8, 0.1) !important;
+  color: #fde047 !important;
+  border: 1px solid rgba(234, 179, 8, 0.2) !important;
+}
+
+/* Pre-event Checklist and task custom styles */
+[id^="overview-tasks-list"] > div, [id^="registered-visitors-list"] > div, [id^="active-sessions-list"] > div, [id^="active-vendors-list"] > div, [id^="resolved-incidents-list"] > div {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px !important;
+  transition: all 0.2s ease !important;
+}
+[id^="overview-tasks-list"] > div:hover, [id^="registered-visitors-list"] > div:hover, [id^="active-sessions-list"] > div:hover, [id^="active-vendors-list"] > div:hover, [id^="resolved-incidents-list"] > div:hover {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  border-color: #3f3f46 !important;
+}
+
+/* Footer Custom Styling */
+#app-global-footer {
+  background-color: #09090b !important;
+  border-top: 1px solid var(--border) !important;
+}
+
+/* Progress bar system style */
+.bg-slate-100 {
+  background-color: #27272a !important;
+}
+
+/* AI Command center custom overrides */
+.bg-slate-900 {
+  background-color: #121214 !important;
+  border: 1px solid var(--border) !important;
+}
+.border-slate-800 {
+  border-color: var(--border) !important;
+}
+
+/* Special glowing dots next to card headings */
+h4::before, h5::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  background-color: var(--accent);
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+  box-shadow: 0 0 8px var(--accent);
+}
+
+/* Platform-specific campaign layout containers in Marketing */
+.bg-sky-50\/25 {
+  background-color: rgba(14, 165, 233, 0.05) !important;
+  border-color: rgba(14, 165, 233, 0.2) !important;
+}
+.bg-blue-50\/25 {
+  background-color: rgba(37, 99, 235, 0.05) !important;
+  border-color: rgba(37, 99, 235, 0.2) !important;
+}
+.bg-amber-50\/25 {
+  background-color: rgba(245, 158, 11, 0.05) !important;
+  border-color: rgba(245, 158, 11, 0.2) !important;
+}
+.bg-white\/70 {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}

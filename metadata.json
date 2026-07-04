@@ -1,0 +1,8 @@
+{
+  "name": "EventOps AI",
+  "description": "The self-optimizing event operations dashboard powered by a central AI agent managing scheduling, targeted marketing, visitor registration onboarding, live incident dispatch, and hourly executive analysis.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
